@@ -1,4 +1,4 @@
-# Build MultiArch to support M1
+# Build ARM64 Act Runner
 
 [Leverage multi-CPU architecture support](https://docs.docker.com/desktop/multi-arch/)
 

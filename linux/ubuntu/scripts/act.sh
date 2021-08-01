@@ -93,8 +93,10 @@ printf "\n\t🐋 Installing Node.JS 🐋\t\n"
 VER=$(curl https://nodejs.org/download/release/index.json | jq "[.[] | select(.version|test(\"^v${NODE_VERSION}\"))][0].version" -r)
 NODEPATH="$AGENT_TOOLSDIRECTORY/node/${VER:1}/x64"
 mkdir -v -m 0777 -p "$NODEPATH"
-curl -SsL "https://nodejs.org/download/release/latest-v${NODE_VERSION}.x/node-$VER-linux-x64.tar.xz" | tar -Jxf - --strip-components=1 -C "$NODEPATH"
+curl -SsL "https://nodejs.org/download/release/latest-v${NODE_VERSION}.x/node-$VER-linux-${NODE_PLATFORM}.tar.xz" | tar -Jxf - --strip-components=1 -C "$NODEPATH"
+
 sed "s|^PATH=|PATH=$NODEPATH/bin:|mg" -i /etc/environment
+
 export PATH="$NODEPATH/bin:$PATH"
 
 printf "\n\t🐋 Installed Node.JS 🐋\t\n"
